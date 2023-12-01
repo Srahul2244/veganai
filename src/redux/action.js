@@ -18,7 +18,7 @@ export const postSuccess =()=>{
 
 export const getConatct =()=>(dispatch)=>{
     dispatch({type:types.GET_CONTACT_REQUEST})
-   return axios.get('http://localhost:8000/user/contacts')
+   return axios.get('https://vegan-e2ba.onrender.com/user/contacts')
    .then((res)=>{
     return dispatch(getContactSuccess(res.data))
     }).catch((err)=>{
@@ -30,7 +30,7 @@ export const getConatct =()=>(dispatch)=>{
 
 export const postConatct =(payload)=>(dispatch)=>{
   dispatch({type:types.GET_POST_CONTACT_REQUEST})
-  return axios.post('http://localhost:8000/user/contacts',payload)
+  return axios.post('https://vegan-e2ba.onrender.com/user/contacts',payload)
   .then((res)=>{
    return dispatch(postSuccess())
   })
@@ -43,7 +43,7 @@ export const postConatct =(payload)=>(dispatch)=>{
 
 export const updateContacts=(id,payloads)=>(dispatch)=>{
   dispatch({type:types.UPDATE_CONTACT_REQUEST})
-  return axios.patch(`http://localhost:8000/user/contacts/${id}`,payloads)
+  return axios.patch(`https://vegan-e2ba.onrender.com/user/contacts/${id}`,payloads)
   .then((res)=>{
    return dispatch({type:types.UPDATE_CONTACT_SUCCESS ,
    payload:res.data

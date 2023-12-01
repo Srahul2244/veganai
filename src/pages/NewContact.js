@@ -4,6 +4,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { postConatct } from "../redux/action";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const NewContact = () => {
   const [formData,setFormData] =useState({
     "fName":"",
@@ -12,6 +13,8 @@ const NewContact = () => {
     "phone":"",
   })
   const dispatch =useDispatch()
+  const navigate =useNavigate()
+  
 
   const handleChange =(e)=>{
     const {name,value} =e.target;
@@ -21,6 +24,9 @@ const NewContact = () => {
   const handleSubmit =()=>{
     dispatch(postConatct(formData))
     toast.success("number saved successfully")
+    setTimeout(()=>{
+      navigate("/mobile")
+    })
   }
 
 

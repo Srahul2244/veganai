@@ -21,7 +21,8 @@ const Mobile = () => {
   if (search.trim() === '') {
     setSearchData([]); 
   }else{
-    axios.get('http://localhost:8000/user/contacts/search', {
+   
+    axios.get('https://vegan-e2ba.onrender.com/user/contacts/search', {
       params: {
         fName: search,
       },
@@ -41,7 +42,7 @@ const compareData = searchData.length > 0 ? searchData : data;
  
   return (
     <div>
-      <div className="w-full md:w-9/12 lg:w-9/12 xl:w-9/12  flex flex-col md:flex-row justify-around border-1 border-white bg-cyan-500 shadow-lg shadow-cyan-500/50 relative px-2 md:px-10 py-3 m-auto rounded-sm">
+      <div className="w-full md:w-[560px] lg:w-[560px] xl:w-[560px]  flex flex-col md:flex-row justify-around border-1 border-white bg-cyan-500 shadow-lg shadow-cyan-500/50 relative px-2 md:px-10 py-3 m-auto rounded-sm">
     <input
     value={search}
     onChange={(e)=>setSearch(e.target.value)}
@@ -49,18 +50,18 @@ const compareData = searchData.length > 0 ? searchData : data;
     placeholder="Search"
     className="border-[1px] border-slate-500 w-full md:w-[380px] h-[40px] rounded-full px-6 md:px-14 mb-2 md:mb-0"
     />
-     <CiSearch className="text-2xl md:text-4xl left-2   text-slate-600 absolute left-[550px] top-4" onClick={handleSearch} />
+     <button><CiSearch className="text-2xl md:text-4xl text-slate-600 absolute left-[400px] top-4" onClick={handleSearch} /></button>
     <div>
     </div>
     </div>
 
-    <div className="w-full md:w-9/12 lg:w-9/12 xl:w-9/12 flex flex-col md:flex-row justify-around bg-indigo-500 shadow-lg shadow-indigo-500/50 px-2 md:px-10 py-3 mt-1 m-auto rounded-sm">
+    <div className="w-full md:w-[560px] lg:w-[560px] xl:w-[560px] flex flex-col md:flex-row justify-around bg-indigo-500 shadow-lg shadow-indigo-500/50 px-2 md:px-10 py-3 mt-1 m-auto rounded-sm">
      <p className="text-lg md:text-2xl font-bold text-slate-700 mb-2 md:mb-0 md:mr-4">
      My Profile
     </p>
     <IoIosArrowForward className="text-xl md:text-3xl pt-1 md:pt-2 " />
   </div>
-      <div className="overflow-y-auto max-h-[300px]  max-w-[550px] bg-white border-[1px] border-x-slate-700 m-auto shadow-slate-800 mt-1">
+      <div className="overflow-y-auto max-h-[600px]  max-w-[550px] bg-white border-[1px] border-x-slate-700 m-auto shadow-slate-800 mt-1">
        <p className="text-3xl px-20 mt-5 text-red-900 italic">My Favorites</p>
       {compareData?.map((ele,index) => (
        <div className="flex px-[100px] gap-[40px] py-2" key={ele.id}>

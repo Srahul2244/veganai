@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { postConatct } from "../redux/action";
+import { toast } from "react-toastify";
 const NewContact = () => {
+  const [formData,setFormData] =useState({
+    "fName":"",
+    "lName":"",
+    "email":"",
+    "phone":"",
+  })
+  const dispatch =useDispatch()
+
+  const handleChange =(e)=>{
+    const {name,value} =e.target;
+    setFormData({...formData,[name]:value})
+  }
+  
+  const handleSubmit =()=>{
+    dispatch(postConatct(formData))
+    toast.success("number saved successfully")
+  }
+
+
+
   return (
     <div className="w-11/12 m-auto">
       <div className="px-10 py-5 border-[1px] border-red-800 xl:w-5/12 md:w-5/12 m-auto flex justify-around  rounded-md">
         <IoIosArrowBack className="text-3xl text-green-700" />
         <p className="text-2xl font-bold">Create new contact</p>
-        <button className="text-green-700 text-xl">save</button>
+        <button className="text-xl border-[1px] bg-blue-700 px-10 py-2 rounded-md text-white" onClick={handleSubmit}>save</button>
       </div>
       <div className="bg-green-500  border-[1px] w-5/12 h-[250px] m-auto">
         <img
@@ -51,9 +74,9 @@ const NewContact = () => {
             />
           </svg>
           <div className="py-2">
-            <input type="text" placeholder="Enter your first name" />
+            <input type="text" placeholder="Enter your first name" value={formData.fName} name="fName" onChange={handleChange} />
             <br />
-            <input type="text" placeholder="Enter your last name" />
+            <input type="text" placeholder="Enter your last name" value={formData.lName} name="lName" onChange={handleChange}/>
           </div>
           <RiArrowDropDownLine className="text-4xl text-green-700" />
         </div>
@@ -70,7 +93,7 @@ const NewContact = () => {
               fill="#9DC180"
             />
           </svg>
-          <input type="number" placeholder="phone" />
+          <input type="number" placeholder="phone"  value={formData.phone} name="phone" onChange={handleChange}/>
           <RiArrowDropDownLine className="text-4xl text-green-700" />
         </div>
         <div className="flex justify-center items-center gap-[50px] pb-10">
@@ -86,8 +109,8 @@ const NewContact = () => {
               fill="#9DC180"
             />
           </svg>
-          <input type="email" placeholder="email" />
-          <RiArrowDropDownLine className="text-4xl text-green-700" />
+          <input type="email" placeholder="email" value={formData.email} name="email" onChange={handleChange}/>
+          <RiArrowDropDownLine className="text-4xl text-green-700"/>
         </div>
       </div>
       <p className=" mt-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-4 border-[1px] border-red-900 rounded-lg w-4/12 m-auto text-center py-2 text-3xl text-white">
